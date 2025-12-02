@@ -1,0 +1,138 @@
+/* ===========================================================
+build.gradle (Spring Boot 3.4.9 / JDK 17)
+목적: 의존성 버전 고정(특히 MyBatis 3.5.17, ojdbc18, Log4j2 2.20.0)
+해당 
+=============================================================*/
+plugins {
+    id 'java'                                                // 자바 컴파일 플러그인
+    id 'org.springframework.boot' version '3.4.9'            // 스프링 부트 플러그인(지정 버전)
+    id 'io.spring.dependency-management' version '1.1.7'     // 의존성 버전 정합성 관리
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'         // (선택) REST Docs 문서 변환
+}
+
+group = 'com.gym'                                            // 루트 패키지 그룹명
+version = '1.0'                                              // 프로젝트 버전
+description = 'Demo project for Spring Boot'                 // 설명(임의 텍스트)
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)         // JDK 17 고정
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor                      // 롬복 컴파일 전용 구성
+    }
+    // 자체 로깅 시스템(logback) 제거 --> log4j2 대체
+   	all {
+        exclude module: 'spring-boot-starter-logging'
+   }
+}
+
+// 의존성 저장소 설정
+repositories {
+    mavenCentral()                                           // 메이븐 중앙 저장소
+    // 만약 ojdbc18 중앙 다운로드가 실패하면 아래 주석 해제 후 /libs/ojdbc18.jar 추가
+    // flatDir { dirs 'libs' }                               // 로컬 JAR 폴더(/libs) 사용
+}
+
+// 전역 규칙: 기본 로깅(Logback) 제거 + MyBatis 코어 버전 강제
+configurations.all {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' // Logback 제거(→ Log4j2 사용)
+    resolutionStrategy {
+        force 'org.mybatis:mybatis:3.5.17'                   // MyBatis 코어 3.5.17로 강제 고정
+    }
+}
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))      // REST Docs 스니펫 출력 디렉터리
+}
+
+dependencies {
+    // ===== 웹/검증/보안 =====
+    implementation 'org.springframework.boot:spring-boot-starter-web'        // Spring MVC/내장 톰캣
+    implementation 'org.springframework.boot:spring-boot-starter-validation' // Bean Validation(필수)
+    implementation 'org.springframework.boot:spring-boot-starter-security'   // 보안(부트가 6.4.x 계열 자동 관리)
+
+    // ===== 메일 =====
+    implementation 'org.springframework.boot:spring-boot-starter-mail'       // Mail 스타터
+
+    // ===== MyBatis (부트 연동 + 코어 명시) =====
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3' // 부트 연동(3.0.3 권장)
+    implementation 'org.mybatis:mybatis:3.5.17'                                 // **코어 3.5.17 명시**
+    implementation 'org.mybatis:mybatis-spring:3.0.3'                           // 스프링 연동
+
+    // ===== Oracle JDBC =====
+        // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8
+	implementation 'com.oracle.database.jdbc:ojdbc8:18.3.0.0'
+    // 중앙 저장소 실패 시 flatDir 사용:
+
+    // ===== 로깅: Log4j2 2.20.0 =====
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'      // 부트용 Log4j2 스타터
+    //implementation 'org.apache.logging.log4j:log4j-api:2.20.0'                // Log4j2 API 모듈
+    //implementation 'org.apache.logging.log4j:log4j-core:2.20.0'               // Log4j2 CORE 모듈
+	// -> 불필요함
+	
+	// ===== (핵심)로깅: log4jdbc =====
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+    
+    // ===== Lombok =====
+    compileOnly 'org.projectlombok:lombok:1.18.38'                             // 롬복(컴파일 전용)
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'                     // 롬복 애너테이션 처리
+
+    // ===== 개발 편의 =====
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'            // DevTools(로컬 전용)
+
+    // ===== 파일 업로드 =====
+    implementation 'commons-fileupload:commons-fileupload:1.6.0'              // 파일 업로드 라이브러리
+
+    // ===== 테스트 =====
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'     // JUnit 5.11.x 자동
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3' // MyBatis 테스트(버전 정렬)
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'  // REST Docs (MockMvc)
+    testImplementation 'org.springframework.security:spring-security-test'      // 시큐리티 테스트
+    testRuntimeOnly  'org.junit.platform:junit-platform-launcher'               // JUnit 플랫폼 런처
+    
+    // 모키토 
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+	testImplementation 'org.mockito:mockito-core:5.14.2' 
+	
+	// springdoc-openapi-starter-webmvc-ui (swagger)
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.11'
+	
+	
+	// main 롬복 설정
+	// compileOnly 'org.projectlombok:lombok:1.18.32'
+	// annotationProcessor 'org.projectlombok:lombok:1.18.32'
+	
+	// - smoketest용 - 
+	// backend\src\test\java\com\gym\smoke\SmokeTest.java 테스트 목적
+	
+	// ✅ java.time.* 매핑 핸들러 (Oracle DATE/TIMESTAMP ↔ LocalDateTime)
+    implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+    
+    // ====== JWT token  인증목적(로그인/로그아웃) =======
+    // JWT : https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+	compileOnly 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	// jjwt-impl 등이 있어야 함....
+}
+
+// JUnit5 사용 + REST Docs 스니펫 생성 태스크
+tasks.named('test') {
+    outputs.dir snippetsDir                                  // 스니펫 출력 디렉터리 지정
+    useJUnitPlatform()                                       // JUnit5 사용
+}
+
+tasks.named('asciidoctor') {
+    inputs.dir snippetsDir                                   // 스니펫 입력
+    dependsOn test                                           // 테스트 수행 후 asciidoctor 실행
+}
+
+// -- [스웨거] 메서드 파라미터 이름을 바이트코드에 보존 → springdoc이 경로 변수명을 정확히 읽음
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += ['-parameters']
+}

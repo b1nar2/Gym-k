@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gym.mapper.xml.FileQueryMapper">       <!-- 인터페이스 FQN 일치 -->
+
+  <resultMap id="FileMap" type="com.gym.domain.file.File">    <!-- 컬럼→필드 매핑 -->
+    <id     column="file_id"          property="fileId"/>
+    <result column="file_target_type" property="fileTargetType"/>
+    <result column="file_target_id"   property="fileTargetId"/>
+    <result column="file_name"        property="fileName"/>
+    <result column="file_path"        property="filePath"/>
+    <result column="file_type"        property="fileType"/>
+    <result column="file_ext"         property="fileExt"/>
+    <result column="file_size"        property="fileSize"/>
+    <result column="file_reg_date"    property="fileRegDate"/>
+  </resultMap>
+
+  <!-- ✅ 파일 조회 (fileId, fileName, fileTargetType 조건) -->
+  <select id="selectFiles" parameterType="com.gym.domain.file.FileRequest" resultMap="FileMap">
+    SELECT
+      file_id, file_target_type, file_target_id,
+      file_name, file_path, file_type, file_ext, file_size,
+      file_reg_date
+    FROM file_tbl
+    WHERE 1=1
+      <if test="fileId != null">
+        AND file_id = #{fileId}
+      </if>
+      <if test="fileName != null and fileName != ''">
+        AND file_name LIKE '%' || #{fileName} || '%'
+      </if>
+      <if test="fileTargetType != null and fileTargetType != ''">
+        AND file_target_type = #{fileTargetType}
+      </if>
+    ORDER BY file_id DESC
+  </select>
+
+  <!-- 총 개수 -->
+  <select id="countFiles" resultType="long">
+    SELECT COUNT(*)
+    FROM file_tbl
+    WHERE 1=1
+      <if test="targetType != null and targetType != ''">
+        AND file_target_type = #{targetType}
+      </if>
+      <if test="targetId != null and targetId != ''">
+        AND file_target_id = #{targetId}
+      </if>
+  </select>
+
+	
+</mapper>
