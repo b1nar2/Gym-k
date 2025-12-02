@@ -1,0 +1,134 @@
+/* ==========================================================
+   📄 CmsApp.css — CMS 전용 전체 스타일 (Sidebar + Header + Main)
+   ========================================================== */
+
+.CmsApp {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+
+/* ─────────────────────── Sidebar (당신의 CmsSidebar.tsx와 호환) */
+.sidebar__menu {
+  width: 280px;
+  background: #0f172a;
+  color: #e6eef8;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 0;
+  gap: 8px;
+  height: 100vh;
+  border-right: 1px solid rgba(255,255,255,0.03);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.sidebar__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #a5b4fc;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0 20px;
+  margin: 12px 0 8px 0;
+}
+
+.sidebar__img img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: #cbd5e1;
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 4px 10px;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+.sidebar__link i { width: 18px; text-align: center; color: #94a3b8; }
+.sidebar__link:hover { background: rgba(255,255,255,0.03); color: #ffffff; }
+
+.active_menu_link {
+  background: linear-gradient(90deg, rgba(99,102,241,0.10), rgba(99,102,241,0.04));
+  color: #ffffff;
+  box-shadow: inset 4px 0 0 #6366f1;
+}
+
+.sidebar__logout {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  border-top: 1px solid #334155;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.sidebar__logout i { color: #ef4444; }
+.sidebar__logout:hover { color: #fff; }
+
+/* ─────────────────────── Header */
+.cms-header {
+  background-color: #0f172a;
+  border-bottom: 1px solid #334155;
+  height: 60px;
+  position: fixed;
+  left: 280px;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 90;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+.cms-header h1 {
+  font-size: 1.1rem;
+  color: #a5b4fc;
+}
+
+/* ─────────────────────── Main */
+.cms-main {
+  margin-left: 280px;
+  padding: 80px 30px 40px;
+  background-color: #1e293b;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* ─────────────────────── Responsive */
+@media (max-width: 768px) {
+  .sidebar__menu {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    overflow-x: auto;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+  .cms-header { display: none; }
+  .cms-main {
+    margin-left: 0;
+    padding: 70px 16px 24px;
+  }
+}

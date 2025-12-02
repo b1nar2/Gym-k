@@ -1,0 +1,288 @@
+/* list.css — CMS member list specific styles */
+.table-wrap {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  /* slate-200 */
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  overflow: hidden;
+}
+
+.table-fixed {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table-fixed thead th {
+  background: #f1f5f9;
+  /* slate-100 */
+  color: #334155;
+  /* gray-700 */
+  font-size: 0.875rem;
+  padding: 10px 12px;
+  text-align: left;
+  border-right: 1px solid #e6edf3;
+}
+
+.table-fixed tbody td {
+  padding: 10px 12px;
+  border-right: 1px solid #e6edf3;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.table-fixed tbody tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+.table-fixed tbody tr:nth-child(even) {
+  background: #fbfcfd;
+  /* subtle stripe */
+}
+
+.table-fixed tbody tr:hover {
+  background: #eef2ff;
+  /* indigo-50 */
+}
+
+.table-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.table-actions .edit {
+  color: #4f46e5;
+  /* indigo-600 */
+  margin-right: 12px;
+}
+
+.table-actions .delete {
+  color: #ef4444;
+  /* red-500 */
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .table-fixed thead {
+    display: none;
+  }
+
+  .table-fixed,
+  .table-fixed tbody,
+  .table-fixed tr,
+  .table-fixed td {
+    display: block;
+    width: 100%;
+  }
+
+  .table-fixed tr {
+    margin-bottom: 12px;
+  }
+
+  .table-fixed td {
+    border-right: none;
+    padding: 8px 10px;
+  }
+}
+
+/* ============================================================= */
+/* [251024-페이지 네비게이션] 공통 페이지네이션 스타일 */
+/* ============================================================= */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  /* 버튼과 텍스트 사이 간격 */
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.pagination-container .page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #e2e8f0;
+  /* slate-200 */
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #475569;
+  /* slate-600 */
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.pagination-container .page-button:hover:not(:disabled) {
+  background-color: #f1f5f9;
+  /* slate-100 */
+  border-color: #cbd5e1;
+  /* slate-300 */
+  color: #1e293b;
+  /* slate-800 */
+}
+
+.pagination-container .page-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f8fafc;
+  /* slate-50 */
+}
+
+.pagination-container .page-info {
+  font-weight: 600;
+  color: #334155;
+  /* slate-700 */
+  padding: 0 8px;
+}
+
+/* ============================================================= */
+/* ✅ 신규 회원 등록 및 검색 버튼 공통 스타일 (페이지네이션과 통일) */
+/* ============================================================= */
+.common-button-style {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid #e2e8f0;
+  /* slate-200 */
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #475569;
+  /* slate-600 */
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.common-button-style:hover:not(:disabled) {
+  background-color: #f1f5f9;
+  /* slate-100 */
+  border-color: #cbd5e1;
+  /* slate-300 */
+  color: #1e293b;
+  /* slate-800 */
+}
+
+.common-button-style:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ✅ 신규 회원 등록 버튼 (Primary 색상 유지) */
+.primary-button-style {
+  /* common-button-style 기본 디자인 위에 색상만 덮어씀 */
+  background-color: #4f46e5;
+  /* indigo-600 */
+  color: #ffffff;
+  border-color: #4f46e5;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-sizing: border-box;
+}
+
+.primary-button-style:hover {
+  background-color: #4338ca;
+  /* indigo-700 */
+  border-color: #4338ca;
+}
+
+/* ============================================================= */
+/* ✅ 기간 검색 UI 스타일 및 필터 간격 개선 */
+/* ============================================================= */
+.filter-search-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  /* 요소 간격 확보 */
+  align-items: center;
+  font-size: 0.875rem;
+  /* text-sm */
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.filter-group label {
+  flex-shrink: 0;
+  /* 라벨 축소 방지 */
+  font-weight: 500;
+  color: #4b5563;
+  /* gray-700 */
+}
+
+.filter-input.w-full {
+  width: 300px;
+  /* ✅ 검색 입력창 너비를 300px로 고정 */
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.filter-input.w-auto {
+  width: 150px;
+  /* 날짜 입력창 너비 고정 */
+  flex-shrink: 0;
+}
+
+.filter-select {
+  width: 120px;
+  /* 전체 역할 셀렉트 박스 너비 고정 */
+  flex-shrink: 0;
+}
+
+/* 폼 인풋 기본 스타일 재정의 */
+.form-input {
+  /* Tailwind 'form-input' 클래스에 해당되는 스타일 */
+  height: 38px;
+  /* ✅ 높이를 38px로 통일 */
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  /* slate-200 */
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  box-sizing: border-box;
+  /* ✅ 높이 통일을 위해 box-sizing 통일 */
+}
+
+.filter-select {
+  /* form-input의 높이와 통일 */
+  height: 38px;
+  /* ✅ 높이를 38px로 통일 */
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  /* slate-200 */
+  border-radius: 6px;
+  box-sizing: border-box;
+  /* ✅ 높이 통일을 위해 box-sizing 통일 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  width: 120px;
+  /* 너비 유지 */
+}

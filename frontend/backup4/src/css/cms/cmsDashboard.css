@@ -1,0 +1,256 @@
+/* ==========================================================
+   📄 cmsDashboard.css
+   - Codersbite Admin Dashboard 기본 구조 + Tailwind 호환 버전
+   - 적용 대상: CmsLayout, CmsSidebar, CmsHome
+   ========================================================== */
+
+/* 🧱 1. 전체 레이아웃 컨테이너 */
+.container {
+  display: grid; /* Grid 기반 레이아웃 */
+  grid-template-columns: 240px auto; /* 좌측 sidebar, 우측 메인 영역 */
+  grid-template-rows: 60px auto; /* 상단 navbar, 하단 콘텐츠 */
+  grid-template-areas:
+    "sidebar navbar"
+    "sidebar main"; /* Grid 영역 배치 */
+  height: 100vh; /* 화면 전체 높이 */
+  width: 100%;
+  background-color: #f3f4f6; /* Tailwind gray-100 */
+  color: #111827; /* Tailwind gray-900 */
+  font-family: "Inter", sans-serif;
+}
+
+/* 🧭 2. Sidebar (좌측 메뉴바) */
+#sidebar {
+  grid-area: sidebar;
+  background-color: #1f2937; /* Tailwind gray-800 */
+  color: white;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  overflow-y: auto;
+  padding-top: 1rem;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+/* 🧭 Sidebar 내부 메뉴 */
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* 상단 타이틀 */
+.sidebar__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f3f4f6; /* gray-100 */
+}
+
+/* 로고 이미지 */
+.sidebar__img {
+  display: flex;
+  align-items: center;
+}
+
+/* 링크 항목 기본 스타일 */
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1.25rem;
+  color: #d1d5db; /* Tailwind gray-300 */
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* 마우스 오버 시 */
+.sidebar__link:hover {
+  background-color: #374151; /* Tailwind gray-700 */
+  color: #ffffff;
+}
+
+/* 현재 활성 메뉴 */
+.active_menu_link {
+  background-color: #2563eb; /* Tailwind blue-600 */
+  color: #ffffff !important;
+  font-weight: 600;
+  border-left: 4px solid #3b82f6; /* Tailwind blue-500 */
+}
+
+/* 로그아웃 버튼 */
+.sidebar__logout {
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #374151;
+  color: #9ca3af;
+  cursor: pointer;
+}
+.sidebar__logout:hover {
+  color: #fff;
+}
+
+/* 🧭 3. Navbar (상단 헤더 영역) */
+.navbar {
+  grid-area: navbar;
+  background-color: #111827; /* Tailwind gray-900 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  color: white;
+  font-size: 1rem;
+  height: 60px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  position: sticky;
+  top: 0;
+}
+
+/* 🧭 4. 메인 콘텐츠 영역 */
+.main {
+  grid-area: main;
+  background-color: #f9fafb; /* Tailwind gray-50 */
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* ==========================================================
+   📊 5. CMS Home — 카드, 차트 공통 스타일
+   ========================================================== */
+
+/* 메인 wrapper */
+.main__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 제목 영역 */
+.main__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 인사문 텍스트 */
+.main__greeting h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.main__greeting p {
+  color: #6b7280; /* gray-500 */
+  font-size: 0.875rem;
+}
+
+/* 카드 영역 */
+.main__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+}
+
+/* 개별 카드 */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* 카드 내부 텍스트 */
+.card_inner p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+.card_inner span {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* 아이콘 색상 보조 */
+.text-lightblue { color: #2563eb; }
+.text-red { color: #ef4444; }
+.text-yellow { color: #f59e0b; }
+.text-green { color: #10b981; }
+
+/* ==========================================================
+   📈 6. 그래프 섹션 (Charts)
+   ========================================================== */
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* 왼쪽 영역 */
+.charts__left,
+.charts__right {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* 그래프 타이틀 */
+.charts__left__title,
+.charts__right__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.charts__left__title h1,
+.charts__right__title h1 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.charts__left__title p,
+.charts__right__title p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* 아이콘 색상 */
+.charts__left__title i,
+.charts__right__title i {
+  color: #2563eb;
+  font-size: 1.25rem;
+}
+
+/* ==========================================================
+   🥧 7. 시설별 원형그래프 카드
+   ========================================================== */
+.charts__right__cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.card4 {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 220px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+.card4 h1 {
+  font-size: 1rem;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}

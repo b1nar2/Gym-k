@@ -1,0 +1,100 @@
+/*
+  기본 주요 클래스 명칭
+  .fc-header-toolbar :	헤더 전체(이동, 제목, 뷰 버튼 영역)	//전체
+  .fc-toolbar-chunk.fc-toolbar-start :	헤더 왼쪽(이전버튼 등)	//전체
+  .fc-toolbar-chunk.fc-toolbar-center :	헤더 가운데(타이틀)	//전체
+  .fc-toolbar-chunk.fc-toolbar-end :	헤더 오른쪽(다음버튼·뷰전환 등)	//전체
+  .fc-daygrid-day :	월간 뷰 날짜 셀 전체	//월간(dayGrid)
+  .fc-daygrid-day-frame :	월간 날짜 셀(테두리/배경)	//월간(dayGrid)
+  .fc-col-header-cell :	요일/날짜 상단 헤더 셀	//월간, 주간, 일간
+  .fc-timegrid-event :	주·일간 뷰의 일정 이벤트	//주간, 일간(timeGrid)
+  .fc-timegrid-slot :	시간 그리드 각각의 슬롯(시간줄)	//주간, 일간(timeGrid)
+  .fc-timegrid-col :	시간별 세로칸(요일별 body 영역)	//주간, 일간(timeGrid)
+  .fc-timegrid-slot-label :	시간 구간(좌측, ex: 오전 10시)	//주간, 일간(timeGrid)
+  .fc-scrollgrid-border :	전체 캘린더 외곽선	//전체
+  .fc-col-header :	주간/일간의 날짜헤더 줄	//주간, 일간(timeGrid)
+  .fc-day-today :	오늘 날짜 셀 강조	//전체
+  .fc-event :	모든 일정 이벤트 박스	//전체
+  .fc :	풀캘린더 최상위 컨테이너 //전체
+  
+  특정클래스:nth-child() : 특정 클래스의 n번째 요소
+*/
+
+/* 헤더 영역 각 구역 최소 너비 및 중앙 정렬 */
+.fc-header-toolbar .fc-toolbar-chunk {
+  min-width: 150px;
+  display: flex;
+  justify-content: center;
+}
+
+/* 헤더 영역 폰트 크기 */
+.fc-header-toolbar {
+  font-size: 15px !important;
+}
+
+/* 가운데 타이틀 영역 */
+.fc-toolbar-chunk.fc-toolbar-center {
+  min-width: 100px;
+  text-align: center;
+}
+
+/* 좌측, 우측 버튼 영역 */
+.fc-toolbar-chunk.fc-toolbar-start,
+.fc-toolbar-chunk.fc-toolbar-end {
+  min-width: 50px;
+}
+
+/* 전체 캘린더 배경과 패딩 */
+.fc {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+/* 전체 캘린더 외곽선 */
+.fc-scrollgrid {
+  border: 1.5px solid #aaa !important;
+}
+
+/* 오늘 날짜 셀 배경색 */
+.fc-day-today {
+  background-color: #ebfaee !important;
+}
+
+/* 이벤트 박스 배경색, 테두리, 텍스트 */
+.fc-event {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  color: white !important;
+}
+
+/* 날짜, 시간 열 폰트 크기 */
+.fc-daygrid-day,            /* 월간 날짜 셀 */
+.fc-col-header-cell,        /* 주간/일간 날짜 헤더 셀 */
+.fc-timegrid-slot-label {   /* 시간 레이블 */
+  font-size: 14px !important;
+}
+
+/* 월간 뷰 날짜 셀 테두리 */
+.fc-daygrid-day-frame {
+  border: 2px solid #ccc !important;
+}
+
+/* 시간 그리드 슬롯 하단 테두리 기본 */
+.fc-timegrid-slots > div.fc-timegrid-slot {
+  border-bottom: 1.5px solid #ddd !important;
+}
+
+/* 2번째, 4번째 슬롯 등 짝수번째 슬롯은 더 두꺼운 하단 테두리 */
+td.fc-timegrid-slot.fc-timegrid-slot-lane.fc-timegrid-slot-minor:nth-of-type(even) {
+  border-bottom: 1px solid #bbb !important;
+}
+
+/* 열 헤더(주간/일간 날짜 영역) 하단 테두리 */
+.fc-col-header {
+  border-bottom: 1.5px solid #bbb !important;
+}
+
+/* 시간행 첫 번째 세로선 */
+.fc-timegrid-col:nth-child(1) {
+  border-right: 1.5px solid #bbb !important;
+}

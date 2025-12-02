@@ -1,0 +1,212 @@
+/* ============================================================
+[파일명] form.css
+[작성일] [251024]
+[설명] CMS 전반 입력폼 디자인 (예약신청형 중앙정렬 통합)
+- 모든 입력창·라벨·버튼 통일
+- 기존 CmsUserForm.tsx 전용으로 맞춤 조정
+============================================================ */
+
+/* [1] 폼 전체 배경/정렬 */
+body {
+  background-color: #f8fafc; /* gray-50 */
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  color: #1e293b;
+}
+
+/* [2] 중앙정렬 폼 공통 구조 */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+.form-box {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  width: 100%;
+  max-width: 640px;
+}
+
+/* [3] 라벨 */
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #334155; /* slate-700 */
+}
+
+/* [4] input/select 공통 */
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1e293b;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4f46e5; /* indigo-600 */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* [5] textarea */
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  resize: vertical;
+  color: #1e293b;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* [6] flex 입력줄 간격 (ID + 버튼, 이메일 등) */
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flex.gap-2 > *:not(:last-child) {
+  margin-right: 8px;
+}
+
+/* [7] 버튼 그룹 (등록/수정/취소) */
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* [8] 기본 버튼 (공통) */
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+/* [9] 주요 버튼 - 파란색 (기존 common-button-style 대체) */
+.common-button-style {
+  background-color: #4f46e5; /* indigo-600 */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+.common-button-style:hover {
+  background-color: #4338ca;
+}
+
+/* [10] 보조 버튼 - 회색 */
+.secondary-button-style {
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 10px 20px;
+  border: 1px solid #e2e8f0;
+}
+.secondary-button-style:hover {
+  background-color: #e2e8f0;
+}
+
+/* [11] 기본 입력 섹션 간격 */
+.space-y-3 > * + * {
+  margin-top: 12px;
+}
+.space-y-6 > * + * {
+  margin-top: 24px;
+}
+
+/* [12] 폼 타이틀 */
+.form-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 24px;
+}
+
+/* [13] 초록색 주요 버튼 (결제/등록용) */
+.primary-button-style {
+  background-color: #22c55e; /* green-500 */
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.primary-button-style:hover {
+  background-color: #16a34a;
+}
+.primary-button-style:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* [14] 폼 하단 버튼라인 */
+.form-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* [15] 안내문/도움말 */
+.form-hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* [16] 오류/경고 텍스트 */
+.form-error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* [17] select 기본화 */
+select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg fill='%23474f59' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+/* [18] 반응형 */
+@media (max-width: 640px) {
+  .form-box {
+    padding: 24px;
+    border-radius: 8px;
+  }
+  .form-input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  .primary-button-style {
+    width: 100%;
+  }
+}

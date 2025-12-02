@@ -1,0 +1,38 @@
+/* [1] 전체 App 스타일 */
+.UserApp {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* [2] 헤더 */
+.header {
+  background-color: #2e7d32; /* 조원 스타일 유지 */
+  color: white;
+  padding: 10px;
+}
+
+.nav-link {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* [3] 메인 영역 */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* [4] 푸터 */
+.footer {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}

@@ -1,0 +1,37 @@
+/* [2] Sidebar (좌측 메뉴) */
+.cms-sidebar {
+  width: 280px;
+  background: #0f172a;
+  color: #e6eef8;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 12px;
+  height: 100vh;
+  box-sizing: border-box;
+  border-right: 1px solid rgba(255,255,255,0.03);
+}
+
+/* 메뉴 항목 */
+.cms-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  color: #cbd5e1;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cms-sidebar a:hover {
+  background: rgba(255,255,255,0.03);
+  color: #ffffff;
+}
+
+.cms-sidebar a.active {
+  background: linear-gradient(90deg, rgba(99,102,241,0.10), rgba(99,102,241,0.04));
+  color: #ffffff;
+  box-shadow: inset 4px 0 0 #6366f1;
+}

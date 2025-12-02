@@ -1,0 +1,41 @@
+/* ======================= [UserApp.css - 조원 스타일 적용 + 유지버전] ======================= */
+
+/* [1] 전체 App 스타일 */
+.UserApp {
+  display: flex;             /* 세로 정렬 레이아웃 */
+  flex-direction: column;    /* 상단(Header)→본문(Main)→하단(Footer) 순서 */
+  min-height: 100vh;         /* 전체 화면 높이 기준 */
+}
+
+/* [2] 헤더 영역 */
+.header {
+  background-color: #2e7d32; /* 조원 지정 색상 (초록톤 유지) */
+  color: white;              /* 글자색 흰색 */
+  padding: 10px;             /* 내부 여백 */
+}
+
+/* [3] 네비게이션 링크 */
+.nav-link {
+  margin: 0 10px;            /* 링크 간격 */
+  color: white;              /* 글자색 흰색 */
+  text-decoration: none;     /* 밑줄 제거 */
+}
+
+.nav-link.active {
+  font-weight: bold;         /* 활성 상태 강조 */
+  text-decoration: underline;/* 활성 시 밑줄 */
+}
+
+/* [4] 메인 영역 */
+.main {
+  flex: 1;                   /* 남은 공간 모두 채움 */
+  padding: 20px;             /* 내부 여백 */
+}
+
+/* [5] 푸터 영역 */
+.footer {
+  background-color: #f5f5f5; /* 연회색 배경 */
+  padding: 10px;             /* 내부 여백 */
+  text-align: center;        /* 가운데 정렬 */
+  border-top: 1px solid #ddd;/* 상단 경계선 */
+}

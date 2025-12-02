@@ -1,0 +1,151 @@
+/* ==========================================================
+   📄 CmsApp.css
+   - CMS 전용 전체 레이아웃 및 기본 UI (Sidebar + Header + Main)
+   - Tailwind 기반 다크 인디고톤 테마 (cmsDashboard.css와 연동)
+   ========================================================== */
+
+/* [1] 전체 앱 컨테이너 */
+.CmsApp {
+  display: flex;
+  flex-direction: row; /* 좌측 Sidebar + 우측 Main 구조 */
+  min-height: 100vh;
+  background-color: #0f172a; /* slate-900 */
+  color: #f1f5f9; /* slate-100 */
+  font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+
+/* [2] Sidebar (좌측 메뉴) */
+.cms-sidebar {
+  width: 240px;
+  background-color: #1e293b; /* slate-800 */
+  border-right: 1px solid #334155; /* slate-700 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 20px 0;
+  z-index: 100;
+}
+
+.cms-sidebar .menu-title {
+  color: #a5b4fc; /* indigo-300 */
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cms-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e2e8f0; /* slate-200 */
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cms-sidebar a:hover {
+  background-color: #334155; /* slate-700 */
+  color: #fff;
+}
+
+.cms-sidebar a.active {
+  background-color: #6366f1; /* indigo-500 */
+  color: #fff;
+  font-weight: 600;
+  border-left: 4px solid #818cf8; /* indigo-400 */
+}
+
+/* 로그아웃 영역 */
+.cms-sidebar .logout {
+  margin-top: auto;
+  text-align: center;
+  color: #94a3b8; /* slate-400 */
+  border-top: 1px solid #334155;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cms-sidebar .logout:hover {
+  color: #fff;
+}
+
+/* [3] Header (상단 네비게이션) */
+.cms-header {
+  background-color: #0f172a; /* slate-900 */
+  border-bottom: 1px solid #334155;
+  height: 60px;
+  position: fixed;
+  left: 240px;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 90;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.cms-header h1 {
+  font-size: 1.1rem;
+  color: #a5b4fc; /* indigo-300 */
+}
+
+/* [4] Main (본문) */
+.cms-main {
+  margin-left: 240px; /* sidebar 폭 만큼 확보 */
+  padding: 80px 30px 40px; /* header 높이 고려 */
+  background-color: #1e293b; /* slate-800 */
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* [5] 공통 버튼 */
+.cms-btn-primary {
+  background-color: #6366f1; /* indigo-500 */
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cms-btn-primary:hover {
+  background-color: #4f46e5; /* indigo-600 */
+}
+
+/* [6] 공통 테이블 스타일 */
+.cms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.cms-table th,
+.cms-table td {
+  padding: 10px;
+  border-bottom: 1px solid #334155;
+  text-align: left;
+  color: #e2e8f0;
+}
+
+.cms-table th {
+  background-color: #334155;
+  font-weight: 600;
+}
+
+.cms-table tr:hover {
+  background-color: #475569;
+}
