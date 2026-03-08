@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;				// ✅ JUnit5 테스트 어노테이션
 import org.springframework.beans.factory.annotation.Autowired;	// 💉 스프링 빈 주입
 import org.springframework.boot.test.context.SpringBootTest;	// 🚀 스프링 컨텍스트 로딩 테스트
 import org.springframework.test.context.TestPropertySource;	// ⚙️ 테스트용 프로퍼티 오버라이드(선택)
-import lombok.extern.log4j.Log4j2;				// 📝 Log4j2 로깅
+import lombok.extern.log4j2.Log4j2;				// 📝 Log4j2 로깅
 
 // 테스트 뭐가 수정되었나?
 // 테스트 뭐가 수정되었나?
