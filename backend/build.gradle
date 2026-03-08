@@ -81,6 +81,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.38'                             // 롬복(컴파일 전용)
     annotationProcessor 'org.projectlombok:lombok:1.18.38'                     // 롬복 애너테이션 처리
 
+	// ===== Lombok (2026.03.08 - test용 추가) =====
+	testCompileOnly 'org.projectlombok:lombok:1.18.38'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
+	
     // ===== 개발 편의 =====
     developmentOnly 'org.springframework.boot:spring-boot-devtools'            // DevTools(로컬 전용)
 
