@@ -23,7 +23,8 @@ import lombok.extern.log4j.Log4j2;				// 📝 Log4j2 로깅
 @TestPropertySource(properties = { // (선택) 테스트 동안에만 MyBatis SQL 로그를 콘솔로 노출
         "mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl"
 })
-@Log4j2
+@Slf4j // [260308] @Log4j2 -> @Slf4j 수정
+//@Log4j2
 class SmokeTest {
 
     @Autowired
