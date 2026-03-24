@@ -1,6 +1,6 @@
 # 접속 DB 계정 세팅
 spring:
-  # 프로필(dev/prod) 분리를 해야 함으로 주석 처리
+  # 프로필(dev/prod) 분리를 해야 하므로 주석 처리
   #datasource:
   #  driver-class-name: oracle.jdbc.OracleDriver   # 오라클 드라이버 클래스
   #  url: jdbc:oracle:thin:@localhost:1521:xe      # 서비스 환경
